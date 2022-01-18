@@ -16,29 +16,28 @@
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
-import InfoList from "./components/InfoList.vue";
-import Footer from "./components/Footer.vue";
+import Header from '@/components/Header.vue'
+import InfoList from './components/InfoList.vue'
+import Footer from './components/Footer.vue'
 export default {
   components: {
     Header,
     InfoList,
-    Footer,
+    Footer
   },
   data() {
     return {
-      name: "张三三",
-      age: "20",
-    };
-  },
-};
+      name: '张三三',
+      age: '20'
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 .page {
   background-color: #f4f4f4;
   list-style: none;
-
 
   .service {
     background-color: #fff;

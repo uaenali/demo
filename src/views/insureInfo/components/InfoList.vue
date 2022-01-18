@@ -93,7 +93,6 @@
         <Sign></Sign>
       </div>
     </div>
-    
 
     <!-- 投保声明 -->
     <div class="statement info-item">
@@ -150,11 +149,15 @@
 
     <!-- verify code -->
     <div class="verify-code">
-      <input type="text" placeholder="请输入" />
-      <button @click="sendCode" class="code-btn" :disabled="!show">发送验证码</button>
-      <!-- <Send></Send> -->
+      <input type="number" placeholder="请输入" v-model="verifyCode" />
+      <button
+        @click="sendCode"
+        :class="['code-btn', isSending ? 'disabled' : '']"
+        :disabled="isSending"
+      >
+        {{ isSending ? countdown : '发送验证码' }}
+      </button>
     </div>
-    
 
     <div class="try-tip">
       收不到验证码？试试
@@ -163,8 +166,50 @@
   </div>
 </template>
 
+<script>
+import Sign from './Sign'
+import Send from './Send'
+// that.$options.methods.ss()//ss()是方法名，由于在function中，所以thi移植给that
+export default {
+  components: {
+    Sign,
+    Send
+  },
+  data() {
+    return {
+      username: '李四四',
+      verifyCode: null, // 验证码的输入框内容
+      isSending: false, // 是否在发送验证码
+      countdown: 60 // 倒计时
+    }
+  },
+  methods: {
+    sendCode() {
+      if (!this.verifyCode) {
+        alert('验证码不能为空')
+        return
+      }
+
+      // 修改按钮的状态
+      this.isSending = true
+
+      // 创建定时器倒计时
+      this.timer = setInterval(() => {
+        if (this.countdown === 1) {
+          clearInterval(this.timer)
+          this.isSending = false
+          this.countdown = 60
+          return
+        }
+        this.countdown -= 1
+      }, 1000)
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
-@import "./base.scss";
+@import './base.scss';
 .list {
   padding: 10px 10px 0;
 
@@ -275,6 +320,12 @@
   .verify-code {
     display: flex;
     height: 51px;
+    .code-btn {
+      &.disabled {
+        cursor: not-allowed;
+        background: #ccc;
+      }
+    }
 
     // padding: 8px 20px;
     display: flex;
@@ -467,26 +518,3 @@
   }
 }
 </style>
-
-<script>
-import Sign from "./Sign";
-import Send from "./Send";
-// that.$options.methods.ss()//ss()是方法名，由于在function中，所以thi移植给that
-export default {
-  components: { 
-    Sign,
-    Send 
-  },
-  data() {
-    return {
-      username: "李四四",
-      
-    };
-  },
-  methods: {
-    sendCode() {
-
-    }
-  }
-};
-</script>

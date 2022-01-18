@@ -7,17 +7,18 @@
       width="157"
       height="111"
       style="border: 1px solid #ccc"
-      >Canvas画板</canvas>
+      >Canvas画板</canvas
+    >
     <img v-bind:src="url" alt="" />
     <div>
-      <button type="" v-on:click="clear">重写</button>
-      <button v-on:click="save">保存签名</button>
+      <button>重写</button>
+      <button>保存签名</button>
     </div>
   </div>
 </template>
 
 <script>
-var draw;
+var draw
 // var preHandler = function(e){e.preventDefault();}
 // class Draw {
 //   constructor(el) {
@@ -87,32 +88,32 @@ var draw;
 // }
 
 export default {
- data () {
-  return {
-   msg: '啦啦啦',
-   val:true,
-   url:""
+  data() {
+    return {
+      msg: '啦啦啦',
+      val: true,
+      url: ''
+    }
   }
- },
-//  mounted() {
-//    draw=new Draw('canvas');
-//    draw.init();
-//  },
-//  methods:{
-//   clear:function(){
-//     draw.clear();
-//     // 用于点击清除画布时，同时清除上次保存的图片
-//     this.save()
-//   },
-//   save:function(){
-//     var data=draw.save();
-//     this.url = data;
-//     // 生成图片的base64数据流
-//   },
-// 　　mutate(word){
-//     this.$emit("input", word);
-//   },
-//  }
+  //  mounted() {
+  //    draw=new Draw('canvas');
+  //    draw.init();
+  //  },
+  //  methods:{
+  //   clear:function(){
+  //     draw.clear();
+  //     // 用于点击清除画布时，同时清除上次保存的图片
+  //     this.save()
+  //   },
+  //   save:function(){
+  //     var data=draw.save();
+  //     this.url = data;
+  //     // 生成图片的base64数据流
+  //   },
+  // 　　mutate(word){
+  //     this.$emit("input", word);
+  //   },
+  //  }
 }
 </script>
 <style scoped lang="scss">
